@@ -5,7 +5,7 @@
            controllerName="demos.TranslateView" xmlns:html="http://www.w3.org/1999/xhtml">
            
            
-	<Panel width="600px" id="savePanel" collapsed="false">
+	<Panel width="600px" id="mainPanel" collapsed="false">
 	 
 	    <title>
 	    	<Title id="title" text="{lang>title}"  icon="images/danone.png"></Title>

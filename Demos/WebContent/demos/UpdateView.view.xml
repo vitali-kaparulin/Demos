@@ -1,0 +1,39 @@
+<core:View xmlns:core="sap.ui.core" 
+           xmlns:mvc="sap.ui.core.mvc" 
+           xmlns="sap.ui.commons"
+           xmlns:layout="sap.ui.commons.layout"
+           controllerName="demos.UpdateView" 
+           xmlns:html="http://www.w3.org/1999/xhtml">
+           
+	<Panel width="600px" id="savePanel" collapsed="false">
+	
+	    <title>
+	    	<Title text="Update material description" icon="images/danone.png"></Title>
+	    </title>
+	    
+	    <buttons>
+	    	<Button id="update" text="save" press="saveJson" ></Button>
+	    </buttons>
+	
+		<layout:MatrixLayout id="details" layoutFixed="true" columns="3">
+			<layout:MatrixLayoutRow>
+				<layout:MatrixLayoutCell colSpan="3">
+					<DropdownBox id="material" width="100%" displaySecondaryValues="true" change="setSelected">
+					</DropdownBox>
+				</layout:MatrixLayoutCell>
+			</layout:MatrixLayoutRow>
+			<layout:MatrixLayoutRow>
+				<layout:MatrixLayoutCell>
+					<Label id="MatLabl" text="Material"></Label>
+				</layout:MatrixLayoutCell>
+				<layout:MatrixLayoutCell>
+					<TextField id="MatNumber" width="100%" enabled="false"></TextField>
+				</layout:MatrixLayoutCell>
+				<layout:MatrixLayoutCell>
+					<TextField id="MatText" width="100%" enabled="true"></TextField>
+				</layout:MatrixLayoutCell>
+			</layout:MatrixLayoutRow>
+		</layout:MatrixLayout>
+	</Panel>
+           
+</core:View>
