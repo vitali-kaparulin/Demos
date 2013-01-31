@@ -15,7 +15,15 @@
    				
 	  			//NAVIGATION
 	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_hello",text:"hello"}));
+	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_langu",text:"polyglot"}));
    				
+	  			//When a navigation item is selected, this function is called.
+				//it will retrieve the content based on the selected navigation item
+				oShell.attachWorksetItemSelected(function(oEvent) {
+					var itemKey = oEvent.getParameter("key");
+					oShell.setContent(getContent(itemKey));
+				});
+	  			
 	  			//CONTENT
 	  			var aContent = {};//we cache the content in this object
 	  			
@@ -28,7 +36,9 @@
 					if (!aContent[id]) {
 						//if not cached, define content based on id of navigation item (workset item)
 						if (id == "wi_hello") {
-							aContent[id] = sap.ui.view({id:"idHelloView1", viewName:"demos.HelloView", type:sap.ui.core.mvc.ViewType.JS});
+							aContent[id] = sap.ui.view({id:"idHelloView", viewName:"demos.HelloView", type:sap.ui.core.mvc.ViewType.JS});
+						} else if (id == "wi_langu") {
+							aContent[id] = sap.ui.view({id:"idLanguView1", viewName:"demos.TranslateView", type:sap.ui.core.mvc.ViewType.XML});
 						} else {
 							aContent[id] = null;
 						}
