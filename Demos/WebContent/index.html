@@ -5,14 +5,47 @@
 
    			  <script src="resources/sap-ui-core.js"
                       id="sap-ui-bootstrap"
-                      data-sap-ui-libs="sap.ui.commons"
+                      data-sap-ui-libs="sap.ui.ux3,sap.ui.commons"
                       data-sap-ui-theme="sap_goldreflection" >
               </script>
 
    			  <script>
-			         sap.ui.localResources("demos");
-                     var view = sap.ui.view({id:"idHelloView1", viewName:"demos.HelloView", type:sap.ui.core.mvc.ViewType.JS});
-   			         view.placeAt("content");
+   				//CREATE SHELL COMPONENT
+	  			var oShell = new sap.ui.ux3.Shell("myShell", { appTitle:"Demos SAPUI5" });
+   				
+	  			//NAVIGATION
+	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_hello",text:"hello"}));
+   				
+	  			//CONTENT
+	  			var aContent = {};//we cache the content in this object
+	  			
+	  			//This method is called for the event handler of the navigation (set up from oShell.attachWorksetItemSelected)
+				function getContent(id) {
+	  				
+					sap.ui.localResources("demos");
+	  				
+					//check if the content is already created
+					if (!aContent[id]) {
+						//if not cached, define content based on id of navigation item (workset item)
+						if (id == "wi_hello") {
+							aContent[id] = sap.ui.view({id:"idHelloView1", viewName:"demos.HelloView", type:sap.ui.core.mvc.ViewType.JS});
+						} else {
+							aContent[id] = null;
+						}
+					}
+					return aContent[id];
+				}
+	  			
+				//Initialize the default content
+				oShell.setContent(getContent("wi_hello"));
+				
+				//Make the shell visible by binding it to a DIV in the HTML code
+				oShell.placeAt("content");
+	  			
+			    //sap.ui.localResources("demos");
+                //var view = sap.ui.view({id:"idHelloView1", viewName:"demos.HelloView", type:sap.ui.core.mvc.ViewType.JS});
+   			    //view.placeAt("content");
+   			     
    			  </script>
 
        </head>
