@@ -2,6 +2,7 @@
 <html>
        <head>
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <link rel="stylesheet" media="screen" href="styles/Danone.css" type="text/css" />
 
    			  <script src="resources/sap-ui-core.js"
                       id="sap-ui-bootstrap"
@@ -13,7 +14,7 @@
    				//CREATE SHELL COMPONENT
 	  			var oShell = new sap.ui.ux3.Shell("myShell", { appTitle:"Demos SAPUI5" });
    				
-   				oShell.addStyleClass("styles/Danone");
+   				oShell.addStyleClass("sapUiUx3ShellBgImg");
    				
 	  			//NAVIGATION
 	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_hello",text:"hello"}));
