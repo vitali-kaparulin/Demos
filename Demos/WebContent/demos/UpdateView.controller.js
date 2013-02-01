@@ -1,21 +1,15 @@
 sap.ui.controller("demos.UpdateView", {
 
 
-setSelected : function( ){
+		setSelected : function( ){
 		
-		
-
-		
-		if(this.byId("material").getSelectedKey()){
-			this.byId("MatNumber").setValue(this.byId("material").getSelectedKey());
-			this.byId("MatText").setValue(this.byId("material").getValue());
-		}
-		
-		
-
-	}, 
+			if(this.byId("material").getSelectedKey()){
+				this.byId("MatNumber").setValue(this.byId("material").getSelectedKey());
+				this.byId("MatText").setValue(this.byId("material").getValue());
+			}
+		}, 
 	
-	setDropValues: function() {
+		setDropValues: function() {
 		   
 		// create a JSONModel, fill in the data and bind the Table to this model
 			var url    = "proxy/http/uedcb422.frmon.danet:1080/sap/bc/z_json_demo";
@@ -85,12 +79,7 @@ setSelected : function( ){
 				sap.ui.commons.MessageBox.Action.OK);
 			}
 			
-			
-			
-			
-			// check return
-			
-			//return oModel;
+
 		},
 		
 /**

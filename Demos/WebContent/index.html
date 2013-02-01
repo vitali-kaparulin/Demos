@@ -18,11 +18,19 @@
 	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_langu",text:"polyglot"}));
 	  			oShell.addWorksetItem(new sap.ui.ux3.NavigationItem({key:"wi_updat",text:"material"}));
    				
+	  			oShell.addPaneBarItem(new sap.ui.core.Item("PI_Date",{key:"pi_date",text:"date"}));
+	  			
 	  			//When a navigation item is selected, this function is called.
 				//it will retrieve the content based on the selected navigation item
 				oShell.attachWorksetItemSelected(function(oEvent) {
 					var itemKey = oEvent.getParameter("key");
 					oShell.setContent(getContent(itemKey));
+				});
+	  			
+				//When a pane bar item is selected
+				oShell.attachPaneBarItemSelected(function(oEvent) {
+					var itemKey = oEvent.getParameter("key");
+					oShell.setPaneContent(getContent(itemKey));
 				});
 	  			
 	  			//CONTENT
@@ -42,6 +50,8 @@
 							aContent[id] = sap.ui.view({id:"idLanguView1", viewName:"demos.TranslateView", type:sap.ui.core.mvc.ViewType.XML});
 						} else if (id == "wi_updat") {
 							aContent[id] = sap.ui.view({id:"idUpdatView1", viewName:"demos.UpdateView", type:sap.ui.core.mvc.ViewType.XML});
+						} else if (id == "pi_date") {
+							aContent[id] = sap.ui.view({id:"idLoginView1", viewName:"demos.loginView", type:sap.ui.core.mvc.ViewType.JS});
 						} else {
 							aContent[id] = null;
 						}
