@@ -2,7 +2,8 @@
            xmlns:mvc="sap.ui.core.mvc" 
            xmlns="sap.ui.commons" 
            xmlns:layout="sap.ui.commons.layout"
-           controllerName="demos.TranslateView" xmlns:html="http://www.w3.org/1999/xhtml">
+           controllerName="demos.TranslateView" 
+           xmlns:html="http://www.w3.org/1999/xhtml">
            
            
 	<Panel width="600px" id="mainPanel" collapsed="false">
