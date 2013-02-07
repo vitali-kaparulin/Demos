@@ -1,0 +1,115 @@
+<core:View xmlns:core="sap.ui.core" 
+           xmlns:mvc="sap.ui.core.mvc" 
+           xmlns="sap.ui.commons"
+           xmlns:table="sap.ui.table"
+           xmlns:layout="sap.ui.commons.layout"
+           controllerName="orders.ViewHistory" 
+           xmlns:html="http://www.w3.org/1999/xhtml">
+           
+	<layout:MatrixLayout id="mHistory" layoutFixed="true" columns="1" width="900px">
+		<layout:MatrixLayoutRow>
+			<layout:MatrixLayoutCell>
+				<Panel width="100%" id="pHistory" collapsed="false">
+					<title>
+						<Title id="tSelections" text="{text>title}"  icon="images/danone.png"></Title>
+					</title>
+					<buttons>
+						<Button id="search" press="searchOrders" text="{text>search}"></Button>
+						<Button id="new"    press="initSearch"   text="{text>new_search}" visible="false"></Button>
+					</buttons>
+					<layout:MatrixLayout id="mSelections" layoutFixed="true" columns="8">
+						<layout:MatrixLayoutRow>
+							<layout:MatrixLayoutCell>
+								<Label     id="lSalesorg" text="{text>vkorg}" labelFor="vSalesOrg"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell colSpan="2">
+								<DropdownBox id="dropvkorg" width="95%"></DropdownBox>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<Label     id="lSalesdoc" text="{text>vbeln}" labelFor="vSalesdoc"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<TextField id="vSalesdoc" value="200212102" width="85px"></TextField>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<Label     id="lOrderDat" text="{text>erdat}" labelFor="vOrdDateLow"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<DatePicker id="vOrdDateLow" value="-30" width="100px"></DatePicker>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<DatePicker id="vOrdDateHigh" value="-1" width="100px"></DatePicker>
+							</layout:MatrixLayoutCell>
+						</layout:MatrixLayoutRow>
+						
+						<layout:MatrixLayoutRow>
+							<layout:MatrixLayoutCell>
+								<Label     id="lChannel" text="{text>vtweg}" labelFor="vChannel"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell colSpan="2">
+								<DropdownBox id="dropvtweg" width="95%"></DropdownBox>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<Label     id="lPurchDoc" text="{text>ebeln}" labelFor="vPurchdoc"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<TextField id="vPurchdoc" value="4500012459" width="85px"></TextField>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<Label     id="lOrderTyp" text="{text>auart}" labelFor="vOrdTypLow"></Label>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<DropdownBox id="vOrdTypLow" value="ZSO" width="60px"></DropdownBox>
+							</layout:MatrixLayoutCell>
+							<layout:MatrixLayoutCell>
+								<ListBox>
+										<Item text="ZSO"></Item>
+										<Item text="ZSO"></Item>
+								</ListBox>
+							</layout:MatrixLayoutCell>
+						</layout:MatrixLayoutRow>
+						
+					</layout:MatrixLayout>
+				</Panel>
+			</layout:MatrixLayoutCell>
+		</layout:MatrixLayoutRow>
+		<layout:MatrixLayoutRow>
+			<layout:MatrixLayoutCell>
+				<table:TreeTable id="tTable" >
+					<table:Column width="100px" sortProperty="vbeln">
+            			<Label text="Order / Position"></Label>
+            			<table:template><TextField value="{vbeln}"></TextField></table:template>
+        			</table:Column>        			
+        			<table:Column width="100px" sortProperty="ebeln">
+            			<Label text="PO / Article"></Label>
+            			<table:template><TextField value="{ebeln}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="value">
+            			<Label text="Amount/Price"></Label>
+            			<table:template><TextField value="{value}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="status">
+            			<Label text="Status "></Label>
+            			<table:template><TextField value="{status}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="omenge">
+            			<Label text="Order Qty "></Label>
+            			<table:template><TextField value="{omenge}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="dmenge">
+            			<Label text="Delivered Qty"></Label>
+            			<table:template><TextField value="{dmenge}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="pmenge">
+            			<Label text="Picked Qty"></Label>
+            			<table:template><TextField value="{pmenge}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="rmenge">
+            			<Label text="Return Qty"></Label>
+            			<table:template><TextField value="{rmenge}"></TextField></table:template>
+        			</table:Column>
+				</table:TreeTable>
+			</layout:MatrixLayoutCell>
+		</layout:MatrixLayoutRow>
+	</layout:MatrixLayout>
+</core:View>

@@ -1,0 +1,26 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.ui.commons"
+		   xmlns:layout="sap.ui.commons.layout"
+           controllerName="orders.ViewMessaging" xmlns:html="http://www.w3.org/1999/xhtml">
+           
+	<layout:MatrixLayout id="mMessaging" layoutFixed="true" columns="2" width="900px">
+		<layout:MatrixLayoutRow>
+			<layout:MatrixLayoutCell >
+					<DropdownBox id="messtype" width="100%" >
+					</DropdownBox>
+			</layout:MatrixLayoutCell>
+			<layout:MatrixLayoutCell >
+				<Button text="Send"></Button>
+			</layout:MatrixLayoutCell>
+		</layout:MatrixLayoutRow>
+		<layout:MatrixLayoutRow>
+			<layout:MatrixLayoutCell>
+					<TextArea value="Here is some Text. I hope you like it." rows="5" width="100%">
+					</TextArea>
+			</layout:MatrixLayoutCell>
+			<layout:MatrixLayoutCell>
+					
+			</layout:MatrixLayoutCell>
+		</layout:MatrixLayoutRow>
+	</layout:MatrixLayout>           
+</core:View>
