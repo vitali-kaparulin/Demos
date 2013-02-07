@@ -1,0 +1,14 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 
+           xmlns="sap.ui.commons"
+           xmlns:layout="sap.ui.commons.layout"
+           controllerName="orders.ViewAuartF4" xmlns:html="http://www.w3.org/1999/xhtml">
+           
+           <layout:VerticalLayout id="layout">
+           		<TriStateCheckBox id="allauart" text="select / deselect all">
+           		</TriStateCheckBox>
+           		<HorizontalDivider></HorizontalDivider>
+           </layout:VerticalLayout>
+           
+           
+           
+</core:View>

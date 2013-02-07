@@ -1,6 +1,7 @@
 <core:View xmlns:core="sap.ui.core" 
            xmlns:mvc="sap.ui.core.mvc" 
            xmlns="sap.ui.commons"
+           xmlns:list="sap.ui.commons.ListItem"
            xmlns:table="sap.ui.table"
            xmlns:layout="sap.ui.commons.layout"
            controllerName="orders.ViewHistory" 
@@ -13,10 +14,6 @@
 					<title>
 						<Title id="tSelections" text="{text>title}"  icon="images/danone.png"></Title>
 					</title>
-					<buttons>
-						<Button id="search" press="searchOrders" text="{text>search}"></Button>
-						<Button id="new"    press="initSearch"   text="{text>new_search}" visible="false"></Button>
-					</buttons>
 					<layout:MatrixLayout id="mSelections" layoutFixed="true" columns="8">
 						<layout:MatrixLayoutRow>
 							<layout:MatrixLayoutCell>
@@ -35,10 +32,10 @@
 								<Label     id="lOrderDat" text="{text>erdat}" labelFor="vOrdDateLow"></Label>
 							</layout:MatrixLayoutCell>
 							<layout:MatrixLayoutCell>
-								<DatePicker id="vOrdDateLow" value="-30" width="100px"></DatePicker>
+								<DatePicker id="vOrdDateLow" value="-30" width="100%"></DatePicker>
 							</layout:MatrixLayoutCell>
 							<layout:MatrixLayoutCell>
-								<DatePicker id="vOrdDateHigh" value="-1" width="100px"></DatePicker>
+								<DatePicker id="vOrdDateHigh" value="-1" width="100%"></DatePicker>
 							</layout:MatrixLayoutCell>
 						</layout:MatrixLayoutRow>
 						
@@ -59,14 +56,11 @@
 								<Label     id="lOrderTyp" text="{text>auart}" labelFor="vOrdTypLow"></Label>
 							</layout:MatrixLayoutCell>
 							<layout:MatrixLayoutCell>
-								<DropdownBox id="vOrdTypLow" value="ZSO" width="60px"></DropdownBox>
+								<Button id="F4" text="Choose ..." press="dialogF4Auart"></Button>
 							</layout:MatrixLayoutCell>
 							<layout:MatrixLayoutCell>
-								<ListBox>
-										<Item text="ZSO"></Item>
-										<Item text="ZSO"></Item>
-										
-								</ListBox>
+								<ListBox id="listauart" width="100%" displaySecondaryValues="false"></ListBox>
+								<Button id="search" press="searchOrders" text="{text>search}" width="100%"></Button>
 							</layout:MatrixLayoutCell>
 						</layout:MatrixLayoutRow>
 						

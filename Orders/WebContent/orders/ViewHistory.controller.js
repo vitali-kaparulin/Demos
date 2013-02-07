@@ -8,10 +8,10 @@ sap.ui.controller("orders.ViewHistory", {
 
    setVkorg: function() {
 	   // drop down JSON
-	   var oData = 	[	{ 	key:  "6500",
+	   var oData = 	[	{ 	code:  "6500",
 		                	text: "6500 DANONE SOUTH AFRICA"
 	   				  	},
-	   				  	{ 	key:  "6300",
+	   				  	{ 	code:  "6300",
 	   				  		text: "6300 DANONE NORTH AFRICA"
 	   				  	}
 	   				];
@@ -21,7 +21,7 @@ sap.ui.controller("orders.ViewHistory", {
 	   oModel.setData(oData);
 	   
 	   var oItemTemplate = new sap.ui.core.ListItem();  
-		oItemTemplate.bindProperty("key", "key"); 
+		oItemTemplate.bindProperty("key", "code"); 
 		oItemTemplate.bindProperty("text", "text");  
 		   
 		this.byId("dropvkorg").setModel(oModel);  
@@ -52,12 +52,37 @@ sap.ui.controller("orders.ViewHistory", {
 		this.byId("dropvtweg").setModel(oModel);  
 		this.byId("dropvtweg").bindItems("/", oItemTemplate); 
    },
+   
+   setAuart: function() {
+	   // ListBox JSON
+	   var oData = 	{ doctypes : [	{ 	code:  "ZSO", desc: "ZSO"  	},
+	               	              	{ 	code:  "ZKO", desc: "ZKO"  	}
+	   				          	 ]
+	   				};
+			         
+	 //Create a model and bind the table rows to this model
+	   var oModel = new sap.ui.model.json.JSONModel();
+	   var oListBox = this.byId("listauart");
+	   var oItemTemplate = new sap.ui.core.ListItem();
+	   
+	   oModel.setData(oData); 
+	   oListBox.setModel(oModel);  
+	   oListBox.bindContext("/items");
+	   
+	   oItemTemplate.bindProperty("text", "code");
+	   oItemTemplate.bindProperty("additionalText", "desc");
+	   oListBox.bindAggregation("items", "/doctypes", oItemTemplate);
+	   oListBox.setVisible(false);
+   },
 	
    
    onInit: function() {
 	   this.byId("mHistory").setModel(oTexts,"text");
 	   this.byId("mSelections").setWidths("6%", "5%", "15%", "8%", "10%", "8%","10%", "10%");
 	   this.byId("tTable").setVisible(false);
+	   this.setAuart();
+	   this.byId("search").setStyle(sap.ui.commons.ButtonStyle.Emph);
+	   this.byId("F4").setStyle(sap.ui.commons.ButtonStyle.Accept);
    },
    
    addTable: function(){
@@ -122,18 +147,25 @@ sap.ui.controller("orders.ViewHistory", {
    },
    
    searchOrders: function() {
-	   this.byId("pHistory").setCollapsed(true);
-	   this.byId("search").setVisible(false);
-	   this.byId("new").setVisible(true);
 	   this.addTable();
 	   this.byId("tTable").setVisible(true);
    },
    
-   initSearch: function(){
-	   this.byId("pHistory").setCollapsed(false);
-	   this.byId("search").setVisible(true);
-	   this.byId("new").setVisible(false);
-	   this.byId("tTable").setVisible(false);
+   
+   dialogF4Auart: function(){
+	   
+	   var oFirstDialog = sap.ui.getCore().getControl("dialog");
+	   	   
+	   if(!oFirstDialog){
+		   oFirstDialog = new sap.ui.commons.Dialog({id:"dialog", modal: true});
+		   oFirstDialog.setTitle("Document Types");
+		   oFirstDialog.addContent(sap.ui.view({id:"idF4Auart", viewName:"orders.ViewAuartF4", type:sap.ui.core.mvc.ViewType.XML}));
+		   oFirstDialog.addButton(new sap.ui.commons.Button({text: "OK", press:function(){oFirstDialog.close();}}));
+	   }
+	   oFirstDialog.open();
+	   
+
+
    },
 
 /**
