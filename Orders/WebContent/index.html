@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+       <head>
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<script src="resources/sap-ui-core.js"
+                      id="sap-ui-bootstrap"
+                      data-sap-ui-libs="sap.ui.ux3,sap.ui.commons"
+                      data-sap-ui-theme="sap_goldreflection" >
+              </script>
+              
+              <script>
+     		 	var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+    		 	var oTexts = new sap.ui.model.resource.ResourceModel({bundleName:"lang", locale:sLocale.substring(0,1)});		
+              </script>
+
+   			  <script>
+   				//CREATE SHELL COMPONENT
+	  			var oShell = new sap.ui.ux3.Shell("myShell", { 
+	  				appTitle:oTexts.getProperty("application"),
+	  				
+		  			//NAVIGATION
+	  				worksetItems: [ new sap.ui.ux3.NavigationItem("wi_history",{key:"wi_history", text:oTexts.getProperty("menuhistory"),
+ 				                    subItems:[ new sap.ui.ux3.NavigationItem("wi_previous",{key:"wi_previous",text:oTexts.getProperty("menuprevious")}),
+  			                                   new sap.ui.ux3.NavigationItem("wi_invoices",{key:"wi_invoices",text:oTexts.getProperty("menuinvoices")}),
+  			                                   new sap.ui.ux3.NavigationItem("wi_messages",{key:"wi_messages",text:oTexts.getProperty("menumessages")})
+  				                             ]})	  				               
+	  				              ]
+	  			});
+   				
+   				
+
+	  			
+	  			//When a navigation item is selected, this function is called.
+				//it will retrieve the content based on the selected navigation item
+				oShell.attachWorksetItemSelected(function(oEvent) {
+					var itemKey = oEvent.getParameter("key");
+					oShell.setContent(getContent(itemKey));
+				});
+	  			
+				//When a pane bar item is selected
+				oShell.attachPaneBarItemSelected(function(oEvent) {
+					var itemKey = oEvent.getParameter("key");
+					oShell.setPaneContent(getContent(itemKey));
+					
+				});
+	  			
+	  			//CONTENT
+	  			var aContent = {};//we cache the content in this object
+	  			
+	  			//This method is called for the event handler of the navigation (set up from oShell.attachWorksetItemSelected)
+				function getContent(id) {
+	  				
+					sap.ui.localResources("orders");
+	  				
+					//check if the content is already created
+					if (!aContent[id]) {
+						//if not cached, define content based on id of navigation item (workset item)
+						if (id == "wi_previous") {
+							aContent[id] = sap.ui.view({id:"idHistory", viewName:"orders.ViewHistory", type:sap.ui.core.mvc.ViewType.XML});
+						} else if (id == "wi_invoices") {
+							aContent[id] = sap.ui.view({id:"idInvoices", viewName:"orders.ViewInvoices", type:sap.ui.core.mvc.ViewType.XML});
+						} else if (id == "wi_messages") {
+							aContent[id] = sap.ui.view({id:"idMessages", viewName:"orders.ViewMessaging", type:sap.ui.core.mvc.ViewType.XML});
+						} else {
+							aContent[id] = null;
+						}
+					}
+					return aContent[id];
+				}
+	  			
+				//Initialize the default content
+				oShell.setContent(getContent("wi_previous"));
+				
+				//Make the shell visible by binding it to a DIV in the HTML code
+				oShell.placeAt("content");
+	  			
+   			     
+   			  </script>
+
+       </head>
+       <body class="sapUiBody" role="application">
+              <div id="content"></div>
+       </body>
+</html>

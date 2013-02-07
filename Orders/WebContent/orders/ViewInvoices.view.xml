@@ -1,0 +1,33 @@
+<core:View xmlns:core="sap.ui.core" 
+           xmlns:mvc="sap.ui.core.mvc" 
+           xmlns="sap.ui.commons"
+           xmlns:table="sap.ui.table"
+           xmlns:layout="sap.ui.commons.layout"
+           controllerName="orders.ViewInvoices" xmlns:html="http://www.w3.org/1999/xhtml">
+           
+	<layout:MatrixLayout id="mInvoices" layoutFixed="true" columns="1" width="900px">
+		<layout:MatrixLayoutRow>
+			<layout:MatrixLayoutCell>
+           		<table:Table id="tInvTable" >
+					<table:Column width="100px" sortProperty="vbeln">
+            			<Label text="Invoice Number"></Label>
+            			<table:template><TextField value="{vbeln}"></TextField></table:template>
+        			</table:Column>        			
+        			<table:Column width="100px" sortProperty="ebeln">
+            			<Label text="Net due Date"></Label>
+            			<table:template><TextField value="{ebeln}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="value">
+            			<Label text="Days intil Due date"></Label>
+            			<table:template><TextField value="{value}"></TextField></table:template>
+        			</table:Column>
+        			<table:Column width="100px" sortProperty="status">
+            			<Label text="Amount "></Label>
+            			<table:template><TextField value="{status}"></TextField></table:template>
+        			</table:Column>
+				</table:Table>
+			</layout:MatrixLayoutCell>
+		</layout:MatrixLayoutRow>
+	</layout:MatrixLayout>
+	
+</core:View>
